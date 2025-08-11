@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/HarftenKelime.unity
-    guid: b4d8df7c672040f479f086aaddda489c
+    path: Assets/Scenes/WordFromLetter.unity
+    guid: c05b4a914081d2f4abb968b234dcbfc8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,64 +16,120 @@ public class PlayerClick : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float textAnimDuration = 0.3f;
     [SerializeField] private Vector3[] textScales = { Vector3.one, Vector3.one * 1.2f };
-    [SerializeField] public string pressedPlayer;
-    [SerializeField] public string unpressedPlayer;
+
+    public static event Action<string> OnPlayerClick;
 
     public static PlayerClick Instance;
 
     private void Awake()
     {
+        Initialize(GameState.Menu);
+    }
+    private void Initialize(GameState state)
+    {
+        if (state != GameState.Menu) return;
+
         Instance = this;
-    }
 
-    private void Start()
-    {
-        SetEnableButtons(false);
-        AnimateText(player1PressedText);
-        AnimateText(player2PressedText);
-        player1PressedText.gameObject.SetActive(false);
-        player2PressedText.gameObject.SetActive(false);
-        player1PressedText.text = "Mavi Bastı!";
-        player2PressedText.text = "Kırmızı Bastı!";
-    }
-    public void SetEnableButtons(bool enable)
-    {
-        player1Button.interactable = enable;
-        player2Button.interactable = enable;
-    }
-    public void SetEnablePressedText(bool enable)
-    {
-        player1PressedText.gameObject.SetActive(enable);
-        player2PressedText.gameObject.SetActive(enable);
-    }
-    public void ClickButton(string Player)
-    {
-        player1PressedText.text = "Mavi Bastı!";
-        player2PressedText.text = "Kırmızı Bastı!";
-
-        if (Player == "Player1")
+        if (!player1PressedText || !player2PressedText || !player1Button || !player2Button)
         {
-            player1PressedText.gameObject.SetActive(true);
-            pressedPlayer = "Player1";
-            unpressedPlayer = "Player2";
-        }
-        else if (Player == "Player2")
-        {
-            player2PressedText.gameObject.SetActive(true);
-            pressedPlayer = "Player2";
-            unpressedPlayer = "Player1";
-        }
-
-        Answer.Instance.SetButtonsActive(true);
-        SetEnableButtons(false);
-    }
-    private void AnimateText(Text text)
-    {
-        if (text == null)
-        {
-            Debug.LogError("Text is null");
+            Debug.LogError("Referanslar tanımlanmamış");
             return;
         }
-        LeanTween.scale(text.rectTransform, textScales[1], 0.3f).setLoopPingPong();
+
+        SetButtonOnClicks();
+        SetEnableButtons(false);
+        AnimateTexts(true);
+        SetEnablePressedTexts(false, "All");
+
+        player1PressedText.text = "Mavi Bastı!";
+        player2PressedText.text = "Kırmızı Bastı!";
+    }
+
+
+    private void OnEnable() => SubscribeEvents();
+    private void OnDisable() => UnubscribeEvents();
+
+
+    private void SubscribeEvents()
+    {
+        GameManager.OnGameStateChanged += Initialize;
+        GetLetter.OnGameRestarted += RestartGame;
+        GetLetter.OnLetterSelected += OnLetterSelected;
+        Score.OnGameFinished += RestartGame;
+    }
+    private void UnubscribeEvents()
+    {
+        GameManager.OnGameStateChanged -= Initialize;
+        GetLetter.OnGameRestarted -= RestartGame;
+        GetLetter.OnLetterSelected -= OnLetterSelected;
+        Score.OnGameFinished -= RestartGame;
+    }
+
+
+    private void OnLetterSelected()
+    {
+        SetEnableButtons(true);
+    }
+    private void ClickButton(string player)
+    {
+        SetEnablePressedTexts(true, player);
+        SetEnableButtons(false);
+
+        OnPlayerClick?.Invoke(player);
+    }
+    private void RestartGame()
+    {
+        SetEnablePressedTexts(false, "All");
+    }
+
+
+    // ------------------------- Yardımcılar ---------------------------- //
+
+    private void SetButtonOnClicks()
+    {
+        player1Button.onClick.RemoveAllListeners();
+        player2Button.onClick.RemoveAllListeners();
+
+        player1Button.onClick.AddListener(() => ClickButton("Player1"));
+        player2Button.onClick.AddListener(() => ClickButton("Player2"));
+    }
+    private void SetEnableButtons(bool state)
+    {
+        player1Button.gameObject.SetActive(state);
+        player2Button.gameObject.SetActive(state);
+    }
+    private void SetEnablePressedTexts(bool state, string playerName)
+    {
+        switch (playerName)
+        {
+            case "Player1":
+                player1PressedText.gameObject.SetActive(state);
+                player2PressedText.gameObject.SetActive(!state);
+                break;
+            case "Player2":
+                player1PressedText.gameObject.SetActive(!state);
+                player2PressedText.gameObject.SetActive(state);
+                break;
+            case "All":
+                player1PressedText.gameObject.SetActive(state);
+                player2PressedText.gameObject.SetActive(state);
+                break;
+        }
+    }
+    private void AnimateTexts(bool animate)
+    {
+        Animating(player1PressedText, animate);
+        Animating(player2PressedText, animate);
+    }
+    private void Animating(Text text, bool animate)
+    {
+        if (animate)
+            LeanTween.scale(text.rectTransform, textScales[1], textAnimDuration).setLoopPingPong();
+        else
+        {
+            LeanTween.cancel(text.rectTransform.gameObject);
+            text.rectTransform.localScale = textScales[0];
+        }
     }
 }
