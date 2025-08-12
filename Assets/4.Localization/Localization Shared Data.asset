@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Localization Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Localization
+  m_TableCollectionNameGuidString: d25983303aefa1c40b1cd31cdefa08b3
+  m_Entries:
+  - m_Id: 123709542400
+    m_Key: Key_Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147696766976
+    m_Key: Key_HowToPlay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1376007081984
+    m_Key: Key_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192479350784
+    m_Key: Key_HowToPlayContent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1484081713152
+    m_Key: Key_BluePressed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1529921261568
+    m_Key: Key_RedPressed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1723236732928
+    m_Key: Key_BlueWin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1866321219584
+    m_Key: Key_RedWin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1998634733568
+    m_Key: Key_PressForTheAnwer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7651411480576
+    m_Key: Key_Starting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9715264901120
+    m_Key: Key_Alphabet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16925982314496
+    m_Key: Key_GameName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21789533655040
+    m_Key: Key_NumberOfRounds
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4815649014817488920
+  references:
+    version: 2
+    RefIds:
+    - rid: 4815649014817488920
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1755029997990

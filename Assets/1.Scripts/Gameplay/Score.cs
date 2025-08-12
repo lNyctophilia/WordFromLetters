@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class Score : MonoBehaviour
@@ -11,10 +12,14 @@ public class Score : MonoBehaviour
     [SerializeField] private Button homeButton;
     [SerializeField] private GameObject scoreTable;
 
+    [Header("Localization")]
+    [SerializeField] private LocalizedStringVar localizedWinTextBlue = new LocalizedStringVar("Key_BlueWin");
+    [SerializeField] private LocalizedStringVar localizedWinTextRed = new LocalizedStringVar("Key_RedWin");
+
     [Header("Settings")]
     [SerializeField] private int scorePlayer1 = 0;
     [SerializeField] private int scorePlayer2 = 0;
-    [SerializeField] private int scoreToWin = 6;
+    [SerializeField] public int scoreToWin = 6;
 
     public static event Action OnHomeButtonClicked;
     public static event Action OnGameFinished;
@@ -34,7 +39,7 @@ public class Score : MonoBehaviour
 
         if (!scoreText || !winScreen || !winText || !scoreTable || !homeButton)
         {
-            Debug.LogError("Referanslar tanımlanmamış");
+            Debug.LogError("References not assigned");
             return;
         }
 
@@ -87,8 +92,8 @@ public class Score : MonoBehaviour
     {
         winScreen.gameObject.SetActive(true);
         scoreTable.SetActive(false);
-        if (scorePlayer1 >= scoreToWin) winText.text = "Mavi Kazandı!";
-        else winText.text = "Kırmızı Kazandı!";
+        if (scorePlayer1 >= scoreToWin) localizedWinTextBlue.Get((value) => winText.text = value);
+        else localizedWinTextRed.Get((value) => winText.text = value);
 
         OnGameFinished?.Invoke();
     }

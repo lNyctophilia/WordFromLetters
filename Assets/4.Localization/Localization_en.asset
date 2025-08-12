@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Localization_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d25983303aefa1c40b1cd31cdefa08b3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9715264901120
+    m_Localized: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7651411480576
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192479350784
+    m_Localized: '---------------  How to Play ?  -------------
+
+      -The game
+      is played with two players.
+
+      -When the game starts, a countdown from
+      3 begins.
+
+      -After the countdown, a random letter appears on the screen.
+
+      -Players
+      must think of a word starting with that letter.
+
+      -The first player to
+      press their button gets the right to answer.
+
+      -If the answer is correct,
+      press the Correct button to earn points.
+
+      -If the answer is wrong or
+      takes too long, press the Wrong button and the opponent scores.
+
+      -When
+      the selected number of rounds is reached, the game ends and the player with
+      the most points wins.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147696766976
+    m_Localized: How To Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 123709542400
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1376007081984
+    m_Localized: 'Language :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1484081713152
+    m_Localized: Blue Pressed!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1529921261568
+    m_Localized: Red Pressed!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1723236732928
+    m_Localized: Blue Win!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1866321219584
+    m_Localized: Red Win!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1998634733568
+    m_Localized: Press For The Answer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16925982314496
+    m_Localized: Word From Letter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21789533655040
+    m_Localized: 'Number of Rounds :'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

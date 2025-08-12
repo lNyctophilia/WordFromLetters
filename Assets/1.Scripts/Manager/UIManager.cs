@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject MenuUI;
+    [SerializeField] private GameObject HubUI;
     [SerializeField] private GameObject GameUI;
     [SerializeField] private Button StartButton;
 
@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     {
         if(state != GameState.Menu) return;
 
-        MenuUI.SetActive(true);
+        HubUI.SetActive(true);
         GameUI.SetActive(false);
     }
     private void ShowGameUI(GameState state)
@@ -36,6 +36,6 @@ public class UIManager : MonoBehaviour
         if (state != GameState.Playing) return;
 
         GameUI.SetActive(true);
-        MenuUI.SetActive(false);
+        HubUI.SetActive(false);
     }
 }

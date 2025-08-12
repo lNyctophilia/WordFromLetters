@@ -9,5 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WordFromLetter.unity
     guid: c05b4a914081d2f4abb968b234dcbfc8
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 95e67780db0ff2045953ddbc9924af7e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 047507a6df5e33d4ab797842a7e42118, type: 2}
   m_UseUCBPForAssetBundles: 0

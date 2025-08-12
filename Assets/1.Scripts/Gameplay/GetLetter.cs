@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class GetLetter : MonoBehaviour
@@ -9,8 +11,13 @@ public class GetLetter : MonoBehaviour
     [SerializeField] private Text letterText;
     [SerializeField] private Button restartButton;
 
+    [Header("Localization")]
+    [SerializeField] private LocalizedStringVar localizedStartingText = new LocalizedStringVar("Key_Starting");
+    [SerializeField] private LocalizedStringVar localizedAlphabetText = new LocalizedStringVar("Key_Alphabet");
+    [SerializeField] private string startingText;
+
     [Header("Settings")]
-    [SerializeField] private string[] letters;
+    [SerializeField] private List<string> letters = new List<string>();
     [SerializeField] private float waitingDuration = 0.6f;
 
     public static event Action OnLetterSelected;
@@ -29,19 +36,18 @@ public class GetLetter : MonoBehaviour
 
         if (!letterText || !restartButton)
         {
-            Debug.LogError("Referanslar tanımlanmamış");
+            Debug.LogError("References not assigned");
             return;
         }
 
-        string turkishAlphabet = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ";
-        letters = new string[turkishAlphabet.Length];
-
-        for (int i = 0; i < turkishAlphabet.Length; i++)
+        localizedAlphabetText.Get((value) =>
         {
-            letters[i] = turkishAlphabet[i].ToString();
-        }
-
-        letterText.text = "Waiting...";
+            letters = StringToList(value);
+        });
+        localizedStartingText.Get((value) =>
+        {
+            startingText = value;
+        });
 
         SetButtonOnClicks();
     }
@@ -57,6 +63,7 @@ public class GetLetter : MonoBehaviour
         GameManager.OnGameStateChanged += StartGame;
         Answer.OnPlayerAnswered += Answered;
         Score.OnGameFinished += OnGameFinished;
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
     }
     private void UnsubscribeEvents()
     {
@@ -64,9 +71,19 @@ public class GetLetter : MonoBehaviour
         GameManager.OnGameStateChanged -= StartGame;
         Answer.OnPlayerAnswered -= Answered;
         Score.OnGameFinished -= OnGameFinished;
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
     }
-
-
+    private void OnLocaleChanged(UnityEngine.Localization.Locale locale)
+    {
+        localizedAlphabetText.Get((value) =>
+        {
+            letters = StringToList(value);
+        });
+        localizedStartingText.Get((value) =>
+        {
+            startingText = value;
+        });
+    }
     private void StartGame(GameState state)
     {
         if (state != GameState.Playing) return;
@@ -78,16 +95,15 @@ public class GetLetter : MonoBehaviour
     }
     private IEnumerator StartGameCoroutine()
     {
-        yield return new WaitForSecondsRealtime(waitingDuration);
         letterText.text = "3...";
         yield return new WaitForSecondsRealtime(waitingDuration);
         letterText.text = "2...";
         yield return new WaitForSecondsRealtime(waitingDuration);
         letterText.text = "1...";
         yield return new WaitForSecondsRealtime(waitingDuration);
-        letterText.text = "Start";
+        letterText.text = startingText;
         yield return new WaitForSecondsRealtime(waitingDuration);
-        int randomChoice = UnityEngine.Random.Range(0, letters.Length);
+        int randomChoice = UnityEngine.Random.Range(0, letters.Count);
         letterText.text = letters[randomChoice];
 
         OnLetterSelected?.Invoke();
@@ -108,5 +124,14 @@ public class GetLetter : MonoBehaviour
             StartGame(GameState.Playing);
             OnGameRestarted?.Invoke();
         });
+    }
+    private List<string> StringToList(string alphabet)
+    {
+        List<string> result = new List<string>();
+        foreach (char c in alphabet)
+        {
+            result.Add(c.ToString());
+        }
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class PlayerClick : MonoBehaviour
@@ -12,6 +13,13 @@ public class PlayerClick : MonoBehaviour
 
     [SerializeField] private Button player1Button;
     [SerializeField] private Button player2Button;
+
+
+    [Header("Localization Texts")]
+    [SerializeField] private LocalizedStringVar localizedPlayer1PressedText = new LocalizedStringVar("Key_BluePressed");
+    [SerializeField] private LocalizedStringVar localizedPlayer2PressedText = new LocalizedStringVar("Key_RedPressed");
+    [SerializeField] private string pressedTextBlue = "Blue Pressed!";
+    [SerializeField] private string pressedTextRed = "Red Pressed!";
 
     [Header("Settings")]
     [SerializeField] private float textAnimDuration = 0.3f;
@@ -33,7 +41,7 @@ public class PlayerClick : MonoBehaviour
 
         if (!player1PressedText || !player2PressedText || !player1Button || !player2Button)
         {
-            Debug.LogError("Referanslar tanımlanmamış");
+            Debug.LogError("References not assigned");
             return;
         }
 
@@ -42,8 +50,16 @@ public class PlayerClick : MonoBehaviour
         AnimateTexts(true);
         SetEnablePressedTexts(false, "All");
 
-        player1PressedText.text = "Mavi Bastı!";
-        player2PressedText.text = "Kırmızı Bastı!";
+        localizedPlayer1PressedText.Get((value) =>
+        {
+            pressedTextBlue = value;
+            player1PressedText.text = pressedTextBlue;
+        });
+        localizedPlayer2PressedText.Get((value) =>
+        {
+            pressedTextRed = value;
+            player2PressedText.text = pressedTextRed;
+        });
     }
 
 
@@ -57,6 +73,7 @@ public class PlayerClick : MonoBehaviour
         GetLetter.OnGameRestarted += RestartGame;
         GetLetter.OnLetterSelected += OnLetterSelected;
         Score.OnGameFinished += RestartGame;
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
     }
     private void UnubscribeEvents()
     {
@@ -64,9 +81,21 @@ public class PlayerClick : MonoBehaviour
         GetLetter.OnGameRestarted -= RestartGame;
         GetLetter.OnLetterSelected -= OnLetterSelected;
         Score.OnGameFinished -= RestartGame;
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
     }
-
-
+    private void OnLocaleChanged(UnityEngine.Localization.Locale locale)
+    {
+        localizedPlayer1PressedText.Get((value) =>
+        {
+            pressedTextBlue = value;
+            player1PressedText.text = pressedTextBlue;
+        });
+        localizedPlayer2PressedText.Get((value) =>
+        {
+            pressedTextRed = value;
+            player2PressedText.text = pressedTextRed;
+        });
+    }
     private void OnLetterSelected()
     {
         SetEnableButtons(true);
@@ -125,7 +154,11 @@ public class PlayerClick : MonoBehaviour
     private void Animating(Text text, bool animate)
     {
         if (animate)
+        {
+            LeanTween.cancel(text.rectTransform.gameObject);
+            text.rectTransform.localScale = textScales[0];
             LeanTween.scale(text.rectTransform, textScales[1], textAnimDuration).setLoopPingPong();
+        }
         else
         {
             LeanTween.cancel(text.rectTransform.gameObject);

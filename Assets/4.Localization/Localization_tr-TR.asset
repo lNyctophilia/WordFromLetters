@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Localization_tr-TR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr-TR
+  m_SharedData: {fileID: 11400000, guid: d25983303aefa1c40b1cd31cdefa08b3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 123709542400
+    m_Localized: "Ba\u015Fla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147696766976
+    m_Localized: "Nas\u0131l Oynan\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1376007081984
+    m_Localized: 'Dil :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192479350784
+    m_Localized: "---------------  Nas\u0131l Oynan\u0131r ?  -------------\n- Oyun
+      iki ki\u015Fiyle oynan\u0131r.\n- Oyun ba\u015Flad\u0131\u011F\u0131nda ekranda
+      3'ten geriye say\u0131m ba\u015Flar.\n- Say\u0131m bitti\u011Finde ekranda
+      rastgele bir harf belirir.\n- Oyuncular, bu harfle ba\u015Flayan bir kelime
+      d\xFC\u015F\xFCn\xFCr.\n- \u0130lk basan oyuncu cevap hakk\u0131n\u0131 kazan\u0131r.\n-
+      Do\u011Fru cevap verirse Do\u011Fru butonuna bas\u0131l\u0131r ve puan kazan\u0131r.\n-
+      Yanl\u0131\u015F cevap verir veya \xE7ok ge\xE7 d\xFC\u015F\xFCn\xFCrse yanl\u0131\u015F
+      butonuna bas\u0131l\u0131r ve rakip puan kazan\u0131r.\n-Ayarlardan se\xE7ilen
+      tur say\u0131s\u0131na ula\u015F\u0131nca oyun biter ve en y\xFCksek puan\u0131
+      alan kazan\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1484081713152
+    m_Localized: "Mavi Bast\u0131!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1529921261568
+    m_Localized: "K\u0131rm\u0131z\u0131 Bast\u0131!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1723236732928
+    m_Localized: "Mavi Kazand\u0131!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1866321219584
+    m_Localized: "K\u0131rm\u0131z\u0131 Kazand\u0131!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1998634733568
+    m_Localized: "Cevaplamak \u0130\xE7in T\u0131kla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7651411480576
+    m_Localized: "Ba\u015Fla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9715264901120
+    m_Localized: "ABC\xC7DEFG\u011EHI\u0130JKLMNO\xD6PRS\u015ETU\xDCVYZ"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16925982314496
+    m_Localized: Harften Kelime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21789533655040
+    m_Localized: "Tur Say\u0131s\u0131 :"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

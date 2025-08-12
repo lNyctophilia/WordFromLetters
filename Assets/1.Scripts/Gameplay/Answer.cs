@@ -27,7 +27,7 @@ public class Answer : MonoBehaviour
 
         if (!correctButton || !wrongButton)
         {
-            Debug.LogError("Referanslar tanımlanmamış");
+            Debug.LogError("References not assigned");
             return;
         }
 
