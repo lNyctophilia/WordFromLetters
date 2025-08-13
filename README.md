@@ -10,7 +10,14 @@
 
 **🎯 Objective**
 
-- 
+- The game is played with two players.
+- When the game starts, a countdown from 3 begins.
+- After the countdown, a random letter appears on the screen.
+- Players must think of a word starting with that letter.
+- The first player to press their button gets the right to answer.
+- If the answer is correct, press the Correct button to earn points.
+- If the answer is wrong or takes too long, press the Wrong button and the opponent scores.
+- When the selected number of rounds is reached, the game ends and the player with the most points wins.
 
 
 ---
