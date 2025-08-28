@@ -164,7 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.lNycGames.HarftenKelime
+    Android: com.lNycGames.WordFromLetters
     Standalone: com.DefaultCompany.2D-URP
   buildNumber:
     Standalone: 0
@@ -682,7 +682,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
-    Android: 0
+    Android: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
